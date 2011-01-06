@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<componentPackage>
+
+	<!-- org.as3coreaddendum.display -->
+
+	<component id="org.as3coreaddendum.display:IDisplayObject" 					class="org.as3coreaddendum.display.IDisplayObject" />
+	<component id="org.as3coreaddendum.display:IDisplayObjectContainer" 		class="org.as3coreaddendum.display.IDisplayObjectContainer" />
+	<component id="org.as3coreaddendum.display:IInteractiveObject" 				class="org.as3coreaddendum.display.IInteractiveObject" />
+
+	<!-- org.as3coreaddendum.errors -->
+
+	<component id="org.as3coreaddendum.errors:ClassCastError" 					class="org.as3coreaddendum.errors.ClassCastError" />
+	<component id="org.as3coreaddendum.errors:CloneNotSupportedError" 			class="org.as3coreaddendum.errors.CloneNotSupportedError" />
+	<component id="org.as3coreaddendum.errors:IllegalStateError" 				class="org.as3coreaddendum.errors.IllegalStateError" />
+	<component id="org.as3coreaddendum.errors:InvalidEnumArgumentError" 		class="org.as3coreaddendum.errors.InvalidEnumArgumentError" />
+	<component id="org.as3coreaddendum.errors:NullPointerError" 				class="org.as3coreaddendum.errors.NullPointerError" />
+	<component id="org.as3coreaddendum.errors:ObjectDisposedError" 				class="org.as3coreaddendum.errors.ObjectDisposedError" />
+	<component id="org.as3coreaddendum.errors:UnsupportedOperationError"		class="org.as3coreaddendum.errors.UnsupportedOperationError" />
+	
+	<!-- org.as3coreaddendum.system -->
+
+	<component id="org.as3coreaddendum.system:Enum" 							class="org.as3coreaddendum.system.Enum" />
+	<component id="org.as3coreaddendum.system:ICloneable" 						class="org.as3coreaddendum.system.ICloneable" />
+	<component id="org.as3coreaddendum.system:IComparable" 						class="org.as3coreaddendum.system.IComparable" />
+	<component id="org.as3coreaddendum.system:IComparator" 						class="org.as3coreaddendum.system.IComparator" />
+	<component id="org.as3coreaddendum.system:IDisposable" 						class="org.as3coreaddendum.system.IDisposable" />
+	<component id="org.as3coreaddendum.system:IEquatable" 						class="org.as3coreaddendum.system.IEquatable" />
+	<component id="org.as3coreaddendum.system:IIndexable" 						class="org.as3coreaddendum.system.IIndexable" />
+	<component id="org.as3coreaddendum.system:IInitializable" 					class="org.as3coreaddendum.system.IInitializable" />
+	<component id="org.as3coreaddendum.system:IPriority" 						class="org.as3coreaddendum.system.IPriority" />
+	<component id="org.as3coreaddendum.system:ISerializable" 					class="org.as3coreaddendum.system.ISerializable" />
+	<component id="org.as3coreaddendum.system:ISortable" 						class="org.as3coreaddendum.system.ISortable" />
+	<component id="org.as3coreaddendum.system:ITypeable" 						class="org.as3coreaddendum.system.ITypeable" />
+	<component id="org.as3coreaddendum.system:NumericRounding" 					class="org.as3coreaddendum.system.NumericRounding" />
+	<component id="org.as3coreaddendum.system:Reflection" 						class="org.as3coreaddendum.system.Reflection" />
+
+	<!-- org.as3coreaddendum.system.comparators -->
+
+	<component id="org.as3coreaddendum.system.comparators:AlphabeticComparator" 		class="org.as3coreaddendum.system.comparators.AlphabeticComparator" />
+	<component id="org.as3coreaddendum.system.comparators:BooleanComparator" 			class="org.as3coreaddendum.system.comparators.BooleanComparator" />
+	<component id="org.as3coreaddendum.system.comparators:DateComparator" 				class="org.as3coreaddendum.system.comparators.DateComparator" />
+	<component id="org.as3coreaddendum.system.comparators:IndexablePriorityComparator" 	class="org.as3coreaddendum.system.comparators.IndexablePriorityComparator" />
+	<component id="org.as3coreaddendum.system.comparators:NumberComparator" 			class="org.as3coreaddendum.system.comparators.NumberComparator" />
+	<component id="org.as3coreaddendum.system.comparators:PriorityComparator" 			class="org.as3coreaddendum.system.comparators.PriorityComparator" />
+	<component id="org.as3coreaddendum.system.comparators:PropertyComparator" 			class="org.as3coreaddendum.system.comparators.PropertyComparator" />
+	<component id="org.as3coreaddendum.system.comparators:StringComparator" 			class="org.as3coreaddendum.system.comparators.StringComparator" />
+
+</componentPackage>
