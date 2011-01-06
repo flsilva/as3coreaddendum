@@ -1,0 +1,132 @@
+﻿/*
+ * Licensed under the MIT License
+ * 
+ * Copyright 2010 (c) Flávio Silva, http://flsilva.com
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ * 
+ * http://www.opensource.org/licenses/mit-license.php
+ */
+
+package org.as3coreaddendum.system.comparators {
+	import org.as3coreaddendum.system.IComparator;
+
+	/**
+	 * A comparator for <code>String</code> objects.
+	 * 
+	 * @example
+	 * 
+	 * <listing version="3.0">
+	 * import org.as3coreaddendum.system.comparators.StringComparator;
+	 * 
+	 * var c1:StringComparator = new StringComparator();
+	 * 
+	 * c1.compare("comparison", "between");    // 1
+	 * c1.compare("between", "comparison");    // -1
+	 * c1.compare("between", "strings");       // 1
+	 * c1.compare("strings", "between");       // -1
+	 * c1.compare("STRINGS", "strings");       // 1
+	 * c1.compare("strings", "Strings");       // -1
+	 * c1.compare("strings", "strings");       // 0
+	 * 
+	 * var c2:StringComparator = new StringComparator(false);
+	 * 
+	 * c2.compare("STRINGS", "strings");    // 0
+	 * c2.compare("strings", "Strings");    // 0
+	 * c2.compare("between", "strings");    // 1
+	 * </listing>
+	 * 
+	 * @author Flávio Silva
+	 */
+	public class StringComparator implements IComparator
+	{
+		private var _caseSensitive: Boolean;
+
+		/**
+		 * Defines whether case is considered in the comparison.
+		 */
+		public function get caseSensitive(): Boolean { return _caseSensitive; }
+
+		public function set caseSensitive(value:Boolean): void { _caseSensitive = value; }
+
+		/**
+		 * Constructor, creates a new <code>StringComparator</code> object.
+		 * 
+		 * @param 	caseSensitive 	Indicates whether case is considered in the comparison.
+		 */
+		public function StringComparator(caseSensitive:Boolean = true)
+		{
+			_caseSensitive = caseSensitive;
+		}
+
+		/**
+		 * Performs the comparison between the two arguments.
+		 * 
+		 * @param 	o1 	The first <code>String</code> object to be compared.
+		 * @param 	o2 	The second <code>String</code> object to be compared.
+		 * @return 	A negative integer, zero, or a positive integer as the first argument is less than, equal to, or greater than the second.
+		 */
+		public function compare(o1:*, o2:*): int
+		{
+			o1 = o1.toString();
+			o2 = o2.toString();
+			
+			if (!_caseSensitive)
+			{
+				o1 = (o1 as String).toLowerCase();
+				o2 = (o2 as String).toLowerCase();
+			}
+			
+			if (o1 == o2)
+			{
+				return 0;
+			}
+			else if ((o1 as String).length > (o2 as String).length)
+			{
+				return 1;
+			}
+			else if ((o1 as String).length < (o2 as String).length)
+			{
+				return -1;
+			}
+			else
+			{
+				var lc:int = (o1 as String).localeCompare(o2);
+				
+				if (lc < 0)
+				{
+					return 1;
+				}
+				else if (lc > 0)
+				{
+					return -1;
+				}
+				else
+				{
+					return 0;
+				}
+			}
+		}
+
+	}
+
+}
