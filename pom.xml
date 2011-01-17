@@ -7,7 +7,7 @@
 	<artifactId>as3coreaddendum</artifactId>
 	<name>AS3CoreAddendum</name>
 	<url>http://as3coreaddendum.org</url>
-	<version>0.2-SNAPSHOT</version>
+	<version>0.1-SNAPSHOT</version>
 	<packaging>swc</packaging>
 	<inceptionYear>2010</inceptionYear>
 	
@@ -300,7 +300,7 @@
 				
 				<executions>
 					<execution>
-						<phase>install</phase>
+						<phase>install release</phase>
 						<goals>
 							<goal>asdoc</goal>
 						</goals>
@@ -370,7 +370,7 @@
 				<executions>
 					<execution>
 						<id>put-asdoc-xml-into-swc</id>
-						<phase>install</phase>
+						<phase>install release</phase>
 						<configuration>
 							<target>
 								<ant antfile="ant-tasks.xml">
@@ -395,6 +395,15 @@
 						<descriptor>src/main/assembly/distribution.xml</descriptor>
 					</descriptors>
 				</configuration>
+				<executions>
+					<execution>
+						<id>put-asdoc-xml-into-swc</id>
+						<phase>install release</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			
 		</plugins>
