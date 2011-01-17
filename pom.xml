@@ -39,6 +39,7 @@
 		<!-- PLUGIN -->
 		<maven.site.plugin.version>3.0-beta-2</maven.site.plugin.version>
 		<maven.assembly.plugin.version>2.2</maven.assembly.plugin.version>
+		<maven.release.plugin.version>2.1</maven.release.plugin.version>
 		<maven.project.info.reports.plugin.version>2.3.1</maven.project.info.reports.plugin.version>
 		<maven.surefire.report.plugin.version>2.7.1</maven.surefire.report.plugin.version>
 		<maven.antrun.plugin.version>1.6</maven.antrun.plugin.version>
@@ -91,6 +92,26 @@
 	<prerequisites>
 		<maven>${maven.version}</maven>
 	</prerequisites>
+	
+	<scm>
+		<!--<url>http://github.com/flsilva/as3coreaddendum/tree/master</url>-->
+		<url>http://github.com/flsilva/as3coreaddendum</url>
+		<!--<connection>git://github.com/flsilva/as3coreaddendum.git</connection>-->
+		<connection>scm:git:http://github.com/flsilva/as3coreaddendum.git</connection>
+		<developerConnection>scm:git:git@github.com:flsilva/as3coreaddendum.git</developerConnection>
+	</scm>
+	<!--
+	<issueManagement>
+		<system>github</system>
+		<url>http://github.com/flsilva/as3coreaddendum/issues</url>
+	</issueManagement>
+	-->
+	<distributionManagement>
+		<repository>
+			<id>gh-pages</id>
+			<url>file:///${project.basedir}/../as3-maven-repository-pages/repository/</url>
+		</repository>
+	</distributionManagement>
 	
 	<repositories>
 		
@@ -185,6 +206,11 @@
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>${maven.release.plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-project-info-reports-plugin</artifactId>
 					<version>${maven.project.info.reports.plugin.version}</version>
 				</plugin>
@@ -220,6 +246,11 @@
 		</pluginManagement>
 		
 		<plugins>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+			</plugin>
 			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
