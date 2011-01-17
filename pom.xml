@@ -7,7 +7,7 @@
 	<artifactId>as3coreaddendum</artifactId>
 	<name>AS3CoreAddendum</name>
 	<url>http://as3coreaddendum.org</url>
-	<version>0.1</version>
+	<version>0.1-SNAPSHOT</version>
 	<packaging>swc</packaging>
 	<inceptionYear>2010</inceptionYear>
 	
