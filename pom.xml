@@ -108,9 +108,13 @@
 	-->
 	<distributionManagement>
 		<repository>
-			<id>gh-pages</id>
-			<url>file:///${project.basedir}/../as3-maven-repository-pages/repository/</url>
+			<id>github-flsilva-as3-maven-release-repository</id>
+			<url>file:///${project.basedir}/../as3-maven-repository-pages/repository/releases/</url>
 		</repository>
+		<snapshotRepository>
+			<id>github-flsilva-as3-maven-snapshot-repository</id>
+			<url>file:///${project.basedir}/../as3-maven-repository-pages/repository/snapshots/</url>
+		</snapshotRepository>
 	</distributionManagement>
 	
 	<repositories>
