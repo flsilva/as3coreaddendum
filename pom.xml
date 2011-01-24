@@ -7,7 +7,7 @@
 	<artifactId>as3coreaddendum</artifactId>
 	<name>AS3CoreAddendum</name>
 	<url>http://as3coreaddendum.org</url>
-	<version>0.2-SNAPSHOT</version>
+	<version>0.1-SNAPSHOT</version>
 	<packaging>swc</packaging>
 	<inceptionYear>2010</inceptionYear>
 	
@@ -109,11 +109,13 @@
 	<distributionManagement>
 		<repository>
 			<id>github-flsilva-as3-maven-release-repository</id>
-			<url>file:///${project.basedir}/../as3-maven-repository-pages/repository/releases/</url>
+			<!--<url>file:///${project.basedir}/../maven-repository-pages/repository/releases/</url>-->
+			<url>${project.basedir}/../maven-repository-pages/repository/releases/</url>
 		</repository>
 		<snapshotRepository>
 			<id>github-flsilva-as3-maven-snapshot-repository</id>
-			<url>file:///${project.basedir}/../as3-maven-repository-pages/repository/snapshots/</url>
+			<!--<url>file:///${project.basedir}/../maven-repository-pages/repository/snapshots/</url>-->
+			<url>${project.basedir}/../maven-repository-pages/repository/snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 	
