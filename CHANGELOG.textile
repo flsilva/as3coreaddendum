@@ -1,0 +1,15 @@
+h2. AS3CoreAddendum CHANGELOG
+=============================
+
+Note: dates are in DD.MM.YYYY format
+
+
+Changes in version 0.1 (xx.xx.2011)
+-------------------------------------
+
+* First Release.
+    * Added main framework package: org.as3coreaddendum.system - with implementations such as: Enum, Reflection, IEquatable, ICloneable, IComparable, etc. Potential for future growing (expected additions).
+
+    * Added package: org.as3coreaddendum.system.comparators - with implementations such as: StringComparator, NumberComparator, DateComparator, etc. Potential for future growing (expected additions).
+
+    * Added package: org.as3coreaddendum.errors - with implementations such as: IllegalStateError, ClassCastError, CloneNotSupportedError, etc. Expected minor additions.
