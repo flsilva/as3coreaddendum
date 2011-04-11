@@ -5,3 +5,8 @@ Thumbs.db
 
 # Maven
 target/
+
+# FDT
+.settings/
+.as3_classpath
+.project
