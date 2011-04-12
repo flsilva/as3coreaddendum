@@ -28,6 +28,7 @@
  */
 
 package org.as3coreaddendum.system {
+	import org.as3coreaddendum.errors.NullPointerError;
 	import org.as3coreaddendum.system.comparators.BooleanComparator;
 	import org.as3coreaddendum.system.comparators.DateComparator;
 	import org.as3coreaddendum.system.comparators.PriorityComparator;
@@ -35,6 +36,8 @@ package org.as3coreaddendum.system {
 
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
+	import flash.net.FileReference;
+	import flash.text.TextField;
 	import flash.text.engine.FontMetrics;
 
 	/**
@@ -48,6 +51,17 @@ package org.as3coreaddendum.system {
 			
 		}
 		
+		///////////////////////
+		// CONSTRUCTOR TESTS //
+		///////////////////////
+		
+		[Test(expects="flash.errors.IllegalOperationError")]
+		public function constructor_illegalInstanciation_ThrowsError(): void
+		{
+			var reflection:Reflection = new Reflection();
+			reflection = null;
+		}
+		
 		/////////////////////////////////////
 		// Reflection.getClassName() TESTS //
 		/////////////////////////////////////
@@ -55,36 +69,36 @@ package org.as3coreaddendum.system {
 		[Test]
 		public function getClassName_validStringObject_ReturnsStringWithClassName(): void
 		{
-			var className:String = Reflection.getClassName("teste");
-			Assert.assertEquals("String", className);
+			var result:String = Reflection.getClassName("teste");
+			Assert.assertEquals("String", result);
 		}
 		
 		[Test]
 		public function getClassName_validStringClass_ReturnsStringWithClassName(): void
 		{
-			var className:String = Reflection.getClassName(String);
-			Assert.assertEquals("String", className);
-		}
-		
-		[Test]
-		public function getClassName_validDisplayObjectClass_ReturnsStringWithClassName(): void
-		{
-			var className:String = Reflection.getClassName(DisplayObject);
-			Assert.assertEquals("DisplayObject", className);
+			var result:String = Reflection.getClassName(String);
+			Assert.assertEquals("String", result);
 		}
 		
 		[Test]
 		public function getClassName_validSpriteObject_ReturnsStringWithClassName(): void
 		{
-			var className:String = Reflection.getClassName(new Sprite());
-			Assert.assertEquals("Sprite", className);
+			var result:String = Reflection.getClassName(new Sprite());
+			Assert.assertEquals("Sprite", result);
+		}
+		
+		[Test]
+		public function getClassName_validDisplayObjectClass_ReturnsStringWithClassName(): void
+		{
+			var result:String = Reflection.getClassName(DisplayObject);
+			Assert.assertEquals("DisplayObject", result);
 		}
 		
 		[Test]
 		public function getClassName_validBooleanComparatorObject_ReturnsStringWithClassName(): void
 		{
-			var className:String = Reflection.getClassName(new BooleanComparator());
-			Assert.assertEquals("BooleanComparator", className);
+			var result:String = Reflection.getClassName(new BooleanComparator());
+			Assert.assertEquals("BooleanComparator", result);
 		}
 		
 		////////////////////////////////////////
@@ -94,36 +108,36 @@ package org.as3coreaddendum.system {
 		[Test]
 		public function getClassPackage_validSpriteClass_ReturnsStringWithClassPackage(): void
 		{
-			var className:String = Reflection.getClassPackage(Sprite);
-			Assert.assertEquals("flash.display", className);
+			var result:String = Reflection.getClassPackage(Sprite);
+			Assert.assertEquals("flash.display", result);
 		}
 		
 		[Test]
 		public function getClassPackage_validSpriteObject_ReturnsStringWithClassPackage(): void
 		{
-			var className:String = Reflection.getClassPackage(new Sprite());
-			Assert.assertEquals("flash.display", className);
+			var result:String = Reflection.getClassPackage(new Sprite());
+			Assert.assertEquals("flash.display", result);
 		}
 		
 		[Test]
 		public function getClassPackage_validFontMetricsClass_ReturnsStringWithClassPackage(): void
 		{
-			var className:String = Reflection.getClassPackage(FontMetrics);
-			Assert.assertEquals("flash.text.engine", className);
+			var result:String = Reflection.getClassPackage(FontMetrics);
+			Assert.assertEquals("flash.text.engine", result);
 		}
 		
 		[Test]
 		public function getClassPackage_validPriorityComparatorObject_ReturnsStringWithClassPackage(): void
 		{
-			var className:String = Reflection.getClassPackage(new PriorityComparator());
-			Assert.assertEquals("org.as3coreaddendum.system.comparators", className);
+			var result:String = Reflection.getClassPackage(new PriorityComparator());
+			Assert.assertEquals("org.as3coreaddendum.system.comparators", result);
 		}
 		
 		[Test]
 		public function getClassPackage_validNumberClass_ReturnsNull(): void
 		{
-			var className:String = Reflection.getClassPackage(Number);
-			Assert.assertNull(className);
+			var result:String = Reflection.getClassPackage(Number);
+			Assert.assertNull(result);
 		}
 		
 		/////////////////////////////////////
@@ -133,29 +147,153 @@ package org.as3coreaddendum.system {
 		[Test]
 		public function getClassPath_validNumberObject_ReturnsStringWithClassPath(): void
 		{
-			var className:String = Reflection.getClassPath(123.4);
-			Assert.assertEquals("Number", className);
+			var result:String = Reflection.getClassPath(123.4);
+			Assert.assertEquals("Number", result);
 		}
 		
 		[Test]
 		public function getClassPath_validNumberClass_ReturnsStringWithClassPath(): void
 		{
-			var className:String = Reflection.getClassPath(Number);
-			Assert.assertEquals("Number", className);
+			var result:String = Reflection.getClassPath(Number);
+			Assert.assertEquals("Number", result);
 		}
 		
 		[Test]
 		public function getClassPath_validDateComparatorObject_ReturnsStringWithClassPath(): void
 		{
-			var className:String = Reflection.getClassPath(new DateComparator());
-			Assert.assertEquals("org.as3coreaddendum.system.comparators.DateComparator", className);
+			var result:String = Reflection.getClassPath(new DateComparator());
+			Assert.assertEquals("org.as3coreaddendum.system.comparators.DateComparator", result);
 		}
 		
 		[Test]
 		public function getClassPath_validDateComparatorClass_ReturnsStringWithClassPath(): void
 		{
-			var className:String = Reflection.getClassPath(DateComparator);
-			Assert.assertEquals("org.as3coreaddendum.system.comparators.DateComparator", className);
+			var result:String = Reflection.getClassPath(DateComparator);
+			Assert.assertEquals("org.as3coreaddendum.system.comparators.DateComparator", result);
+		}
+		
+		//////////////////////////////////////////
+		// Reflection.getSuperClassName() TESTS //
+		//////////////////////////////////////////
+		
+		[Test]
+		public function getSuperClassName_validNumberObject_ReturnsStringWithSuperClassName(): void
+		{
+			var result:String = Reflection.getSuperClassName(123.4);
+			Assert.assertEquals("Object", result);
+		}
+		
+		[Test]
+		public function getSuperClassName_validNumberClass_ReturnsStringWithSuperClassName(): void
+		{
+			var result:String = Reflection.getSuperClassName(Number);
+			Assert.assertEquals("Object", result);
+		}
+		
+		[Test]
+		public function getSuperClassName_validSpriteObject_ReturnsStringWithSuperClassName(): void
+		{
+			var result:String = Reflection.getSuperClassName(new Sprite());
+			Assert.assertEquals("DisplayObjectContainer", result);
+		}
+		
+		[Test]
+		public function getSuperClassName_validSpriteClass_ReturnsStringWithSuperClassName(): void
+		{
+			var result:String = Reflection.getSuperClassName(Sprite);
+			Assert.assertEquals("DisplayObjectContainer", result);
+		}
+		
+		[Test]
+		public function getSuperClassName_validNullPointerErrorClass_ReturnsStringWithSuperClassName(): void
+		{
+			var result:String = Reflection.getSuperClassName(NullPointerError);
+			Assert.assertEquals("Error", result);
+		}
+		
+		/////////////////////////////////////////////
+		// Reflection.getSuperClassPackage() TESTS //
+		/////////////////////////////////////////////
+		
+		[Test]
+		public function getSuperClassName_validArrayObject_ReturnsStringWithSuperClassPackage(): void
+		{
+			var result:String = Reflection.getSuperClassPackage([]);
+			Assert.assertNull(result);
+		}
+		
+		[Test]
+		public function getSuperClassName_validArrayClass_ReturnsStringWithSuperClassPackage(): void
+		{
+			var result:String = Reflection.getSuperClassPackage(Array);
+			Assert.assertNull(result);
+		}
+		
+		[Test]
+		public function getSuperClassName_validDisplayObjectClass_ReturnsStringWithSuperClassPackage(): void
+		{
+			var result:String = Reflection.getSuperClassPackage(DisplayObject);
+			Assert.assertEquals("flash.events", result);
+		}
+		
+		[Test]
+		public function getSuperClassName_validFileReferenceObject_ReturnsStringWithSuperClassPackage(): void
+		{
+			var result:String = Reflection.getSuperClassPackage(new FileReference());
+			Assert.assertEquals("flash.events", result);
+		}
+		
+		[Test]
+		public function getSuperClassName_validFileReferenceClass_ReturnsStringWithSuperClassPackage(): void
+		{
+			var result:String = Reflection.getSuperClassPackage(FileReference);
+			Assert.assertEquals("flash.events", result);
+		}
+		
+		[Test]
+		public function getSuperClassName_validTextFieldObject_ReturnsStringWithSuperClassPackage(): void
+		{
+			var result:String = Reflection.getSuperClassPackage(new TextField());
+			Assert.assertEquals("flash.display", result);
+		}
+		
+		[Test]
+		public function getSuperClassName_validTextFieldClass_ReturnsStringWithSuperClassPackage(): void
+		{
+			var result:String = Reflection.getSuperClassPackage(TextField);
+			Assert.assertEquals("flash.display", result);
+		}
+		
+		/////////////////////////////////////////////
+		// Reflection.getSuperClassPackage() TESTS //
+		/////////////////////////////////////////////
+		
+		[Test]
+		public function getSuperClassPath_validBooleanObject_ReturnsStringWithSuperClassPath(): void
+		{
+			var result:String = Reflection.getSuperClassPath(true);
+			Assert.assertEquals("Object", result);
+		}
+		
+		[Test]
+		public function getSuperClassPath_validBooleanClass_ReturnsStringWithSuperClassPath(): void
+		{
+			var result:String = Reflection.getSuperClassPath(Boolean);
+			Assert.assertEquals("Object", result);
+		}
+		
+		[Test]
+		public function getSuperClassPath_validTextFieldObject_ReturnsStringWithSuperClassPath(): void
+		{
+			var result:String = Reflection.getSuperClassPath(new TextField());
+			Assert.assertEquals("flash.display.InteractiveObject", result);
+		}
+		
+		[Test]
+		public function getSuperClassPath_validTextFieldClass_ReturnsStringWithSuperClassPath(): void
+		{
+			var result:String = Reflection.getSuperClassPath(TextField);
+			Assert.assertEquals("flash.display.InteractiveObject", result);
 		}
 		
 	}
