@@ -29,7 +29,6 @@
 
 package org.as3coreaddendum.system.comparators
 {
-	import org.as3coreaddendum.errors.ClassCastError;
 	import org.as3coreaddendum.system.IComparator;
 
 	/**
@@ -145,14 +144,16 @@ package org.as3coreaddendum.system.comparators
 		 * 
 		 * @param useDecimalPlaces 	Indicates if both numbers should be rounded by the <code>decimalPlaces</code> property.
 		 * @param decimalPlaces 	The number of decimal places to be considered in the comparison. Must be an integer between 0 and 20.
-		 * @throws 	RangeError if the <code>decimalPlaces</code> argument is out of the 0-20 range.
+		 * @throws 	ArgumentError 	if <code>useDecimalPlaces</code> argument is sent <code>false</code> but some value is sent to <code>decimalPlaces</code> argument.
+		 * @throws 	RangeError 		if the <code>decimalPlaces</code> argument is out of the 0-20 range.
 		 */
 		public function NumberComparator(useDecimalPlaces:Boolean = false, decimalPlaces:int = 0)
 		{
-			if (decimalPlaces < 0 || decimalPlaces > 20) throw new RangeError("The property 'decimalPlaces' must be an integer between 0 and 20.");
+			if (useDecimalPlaces == false && decimalPlaces != 0) throw new ArgumentError("To send the 'decimalPlaces' argument you must send <code>true</code> to the 'useDecimalPlaces' argument.");
+			if (decimalPlaces < 0 || decimalPlaces > 20) throw new RangeError("The argument 'decimalPlaces' must be an integer between 0 and 20.");
 			
-			_useDecimalPlaces = useDecimalPlaces;
-			_decimalPlaces = decimalPlaces;
+			this.useDecimalPlaces = useDecimalPlaces;
+			this.decimalPlaces = decimalPlaces;
 		}
 
 		/**
@@ -160,12 +161,12 @@ package org.as3coreaddendum.system.comparators
 		 * 
 		 * @param 	o1	The first <code>Number</code> object to be compared.
 		 * @param 	o2	The second <code>Number</code> object to be compared.
-		 * @throws 	org.as3coreaddendum.errors.ClassCastError if any of the arguments is not of type <code>Number</code>.
+		 * @throws 	ArgumentError if any of the arguments is not of type <code>Number</code>.
 		 * @return 	A negative integer, zero, or a positive integer as the first argument is less than, equal to, or greater than the second.
 		 */
 		public function compare(o1:*, o2:*): int
 		{
-			if (!(o1 is Number) || !(o2 is Number)) throw new ClassCastError("Both arguments must be of type 'Number'.");
+			if (!(o1 is Number) || !(o2 is Number)) throw new ArgumentError("Both arguments must be of type 'Number'.");
 			
 			if (_useDecimalPlaces)
 			{
@@ -194,7 +195,7 @@ package org.as3coreaddendum.system.comparators
 		 */
 		public function toString():String
 		{
-			return "[NumberComparator: useDecimalPlaces = " + _useDecimalPlaces + " | decimalPlaces = " + _decimalPlaces + "]";
+			return "[NumberComparator: useDecimalPlaces = " + useDecimalPlaces + " | decimalPlaces = " + decimalPlaces + "]";
 		}
 
 	}

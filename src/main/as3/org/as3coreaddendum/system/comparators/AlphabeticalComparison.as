@@ -27,39 +27,35 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-package org.as3coreaddendum.system {
+package org.as3coreaddendum.system.comparators {
 	import org.as3coreaddendum.system.Enum;
 
 	import flash.errors.IllegalOperationError;
 
 	/**
-	 * The enumeration class that defines the acceptable values for numeric rounding.
+	 * The enumeration class that defines the acceptable values for the <code>AlphabeticalComparator</code>.
 	 * <p>This is a type-safe enumeration class, which means there is no possibility of creating instances externally.
 	 * All acceptable values will be created automaticaly by this class internaly, through its constants.</p>
 	 * 
 	 * @author Flávio Silva
 	 */
-	public class NumericRounding extends Enum
+	public class AlphabeticalComparison extends Enum
 	{
-		/**
-		 * Defines the constant that indicates that a numeric value should not be rounded.
-		 */
-		public static const NONE	: NumericRounding = new NumericRounding("None", 0);
 
 		/**
-		 * Defines the constant that indicates that a numeric value should be rounded down.
+		 * Defines the constant which indicates that the comparison should ignore case.
 		 */
-		public static const FLOOR	: NumericRounding = new NumericRounding("Floor", 1);
+		public static const CASE_INSENSITIVE	: AlphabeticalComparison = new AlphabeticalComparison("Case Insensitive", 0);
 
 		/**
-		 * Defines the constant that indicates that a numeric value should be rounded down or up, whichever is closer.
+		 * Defines the constant which indicates that the comparison should return lower case first.
 		 */
-		public static const ROUND	: NumericRounding = new NumericRounding("Round", 2);
+		public static const LOWER_CASE_FIRST	: AlphabeticalComparison = new AlphabeticalComparison("Lower Case First", 1);
 
 		/**
-		 * Defines the constant that indicates that a numeric value should be rounded up.
+		 * Defines the constant which indicates that the comparison should return upper case first.
 		 */
-		public static const CEIL	: NumericRounding = new NumericRounding("Ceil", 3);
+		public static const UPPER_CASE_FIRST	: AlphabeticalComparison = new AlphabeticalComparison("Upper Case First", 2);
 
 		/**
 		 * @private
@@ -71,13 +67,13 @@ package org.as3coreaddendum.system {
 		}
 
 		/**
-		 * Constructor, creates a new NumericRounding object.
+		 * Constructor, creates a new AlphabeticalComparison object.
 		 * 
 		 * @param 	name 			The name of this enumeration constant.
 		 * @param 	ordinal 		The ordinal of this enumeration constant, that is its position in the enum declaration (where the initial constant is assigned an ordinal of zero).
 		 * @throws 	IllegalOperationError 	If there is an attempt to instantiation outside the internal code of this class. All acceptable values will be created automaticaly by this class internaly, through the constants. There's no possibility to use this constructor externally.
 		 */
-		public function NumericRounding(name:String, ordinal:int)
+		public function AlphabeticalComparison(name:String, ordinal:int)
 		{
 			super(name, ordinal);
 			if (_created) throw new IllegalOperationError("The set of acceptable values by this Enumerated Type has already been created internally.");

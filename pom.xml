@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.as3coreaddendum</groupId>
 	<artifactId>as3coreaddendum</artifactId>
-	<name>AS3CoreAddendum</name>
+	<name>as3coreaddendum</name>
 	<url>http://as3coreaddendum.org</url>
 	<version>0.1-SNAPSHOT</version>
 	<packaging>swc</packaging>
@@ -20,7 +20,7 @@
 	<developers>
 		<developer>
 			<id>flsilva</id>
-			<name>Flávio Silva</name>
+			<name>Flavio Silva</name>
 			<email>contact [at] flsilva.com</email>
 			<url>http://flsilva.com</url>
 			<roles>
@@ -76,7 +76,7 @@
 		
 		<!-- ASDOC -->
 		<asdoc.date-in-footer>true</asdoc.date-in-footer>
-		<asdoc.footer>Copyright 2010-2011 Flávio Silva - http://flsilva.com</asdoc.footer>
+		<asdoc.footer>Copyright 2010-2011 Flavio Silva - http://flsilva.com</asdoc.footer>
 		<asdoc.keep-xml>true</asdoc.keep-xml>
 		<asdoc.left-frameset-width>280</asdoc.left-frameset-width>
 		<asdoc.main-title>AS3CoreAddendum API Documentation</asdoc.main-title>
@@ -248,6 +248,11 @@
 					<artifactId>maven-antrun-plugin</artifactId>
 					<version>${maven.antrun.plugin.version}</version>
 				</plugin>
+				<!--<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>cobertura-maven-plugin</artifactId>
+					<version>2.4</version>
+				</plugin>-->
 			</plugins>
 		</pluginManagement>
 		
@@ -266,6 +271,10 @@
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-surefire-report-plugin</artifactId>
 						</plugin>
+						<!--<plugin>
+							<groupId>org.codehaus.mojo</groupId>
+							<artifactId>cobertura-maven-plugin</artifactId>
+						</plugin>-->
 						<plugin>
 							<groupId>com.adobe.ac</groupId>
 							<artifactId>flex-pmd-maven-plugin</artifactId>
@@ -336,7 +345,7 @@
 					<dumpConfigAttach>${compc.dump-config-attach}</dumpConfigAttach>
 					<incremental>${compc.incremental}</incremental>
 					<linkReport>${compc.link-report}</linkReport>
-					<minimumSupportedVersion>${flex.version}</minimumSupportedVersion>
+					<!--<minimumSupportedVersion>${flex.version}</minimumSupportedVersion>-->
 					<optimize>${compc.optimize}</optimize>
 					<showWarnings>${compc.show-warnings}</showWarnings>
 					<strict>${compc.strict}</strict>

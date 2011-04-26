@@ -29,7 +29,6 @@
 
 package org.as3coreaddendum.system.comparators
 {
-	import org.as3coreaddendum.errors.ClassCastError;
 	import org.as3coreaddendum.system.IComparator;
 
 	/**
@@ -40,8 +39,13 @@ package org.as3coreaddendum.system.comparators
 	 * <listing version="3.0">
 	 * import org.as3coreaddendum.system.comparators.AlphabeticComparator;
 	 * 
-	 * var c1:AlphabeticComparator = new AlphabeticComparator();
+	 * var c1:AlphabeticComparator = new AlphabeticComparator(AlphabeticComparison.LOWER_CASE_FIRST);
 	 * 
+	 * c1.compare("a", "a")                      // 0
+	 * c1.compare("a", "b")                      // -1
+	 * c1.compare("b", "a")                      // 1
+	 * c1.compare("a", "A")                      // -1
+	 * c1.compare("A", "a")                      // 1
 	 * c1.compare("comparison", "comparison")    // 0
 	 * c1.compare("comparison", "comParison")    // -1
 	 * c1.compare("comParison", "comparison")    // 1
@@ -62,21 +66,26 @@ package org.as3coreaddendum.system.comparators
 	 * <listing version="3.0">
 	 * import org.as3coreaddendum.system.comparators.AlphabeticComparator;
 	 * 
-	 * var c2:AlphabeticComparator = new AlphabeticComparator(false);
+	 * var c2:AlphabeticComparator = new AlphabeticComparator(AlphabeticComparison.UPPER_CASE_FIRST);
 	 * 
+	 * c2.compare("a", "a")                      // 0
+	 * c2.compare("a", "b")                      // -1
+	 * c2.compare("b", "a")                      // 1
+	 * c2.compare("a", "A")                      // 1
+	 * c2.compare("A", "a")                      // -1
 	 * c2.compare("comparison", "comparison")    // 0
-	 * c2.compare("comparison", "comParison")    // 0
-	 * c2.compare("comParison", "comparison")    // 0
-	 * c2.compare("comparison", "Comparison")    // 0
-	 * c2.compare("Comparison", "comparison")    // 0
+	 * c2.compare("comparison", "comParison")    // 1
+	 * c2.compare("comParison", "comparison")    // -1
+	 * c2.compare("comparison", "Comparison")    // 1
+	 * c2.compare("Comparison", "comparison")    // -1
 	 * c2.compare("between", "strings")          // -1
 	 * c2.compare("between", "Strings")          // -1
 	 * c2.compare("Between", "strings")          // -1
 	 * c2.compare("Between", "Strings")          // -1
 	 * c2.compare("between", "between")          // 0
 	 * c2.compare("between", "betweena")         // -1
-	 * c2.compare("betweena", "betweenA")        // 0
-	 * c2.compare("betweenA", "betweena")        // 0
+	 * c2.compare("betweena", "betweenA")        // 1
+	 * c2.compare("betweenA", "betweena")        // -1
 	 * c2.compare("TestA", "TestB")              // -1
 	 * c2.compare("TestB", "TestA")              // 1
 	 * </listing>
@@ -84,8 +93,13 @@ package org.as3coreaddendum.system.comparators
 	 * <listing version="3.0">
 	 * import org.as3coreaddendum.system.comparators.AlphabeticComparator;
 	 * 
-	 * var c3:AlphabeticComparator = new AlphabeticComparator(false, false);
+	 * var c3:AlphabeticComparator = new AlphabeticComparator(AlphabeticalComparison.CASE_INSENSITIVE);
 	 * 
+	 * c3.compare("a", "a")                      // 0
+	 * c3.compare("a", "b")                      // -1
+	 * c3.compare("b", "a")                      // 1
+	 * c3.compare("a", "A")                      // 0
+	 * c3.compare("A", "a")                      // 0
 	 * c3.compare("comparison", "comparison")    // 0
 	 * c3.compare("comparison", "comParison")    // 0
 	 * c3.compare("comParison", "comparison")    // 0
@@ -103,59 +117,37 @@ package org.as3coreaddendum.system.comparators
 	 * c3.compare("TestB", "TestA")              // 1
 	 * </listing>
 	 * 
-	 * <listing version="3.0">
-	 * import org.as3coreaddendum.system.comparators.AlphabeticComparator;
-	 * 
-	 * var c3:AlphabeticComparator = new AlphabeticComparator(true, false);
-	 * 
-	 * c4.compare("comparison", "comparison")    // 0
-	 * c4.compare("comparison", "comParison")    // 1
-	 * c4.compare("comParison", "comparison")    // -1
-	 * c4.compare("comparison", "Comparison")    // 1
-	 * c4.compare("Comparison", "comparison")    // -1
-	 * c4.compare("between", "strings")          // -1
-	 * c4.compare("between", "Strings")          // -1
-	 * c4.compare("Between", "strings")          // -1
-	 * c4.compare("Between", "Strings")          // -1
-	 * c4.compare("between", "between")          // 0
-	 * c4.compare("between", "betweena")         // -1
-	 * c4.compare("betweena", "betweenA")        // 1
-	 * c4.compare("betweenA", "betweena")        // -1
-	 * c4.compare("TestA", "TestB")              // -1
-	 * c4.compare("TestB", "TestA")              // 1
-	 * </listing>
-	 * 
-	 * @author Flávio Silva
+	 * @see 	org.as3coreaddendum.system.comparators.AlphabeticalComparison AlphabeticalComparison
+	 * @author 	Flávio Silva
 	 */
-	public class AlphabeticComparator implements IComparator
+	public class AlphabeticalComparator implements IComparator
 	{
-		private var _caseSensitive: Boolean;
-		private var _lowerCaseFirst: Boolean;
+		private var _comparison: AlphabeticalComparison;
 
 		/**
-		 * Defines whether case is considered in the comparison.
+		 * Defines the type of comparison to be used.
+		 * @throws 	ArgumentError If is assigned a <code>null</code> value.
+		 * @see 	org.as3coreaddendum.system.comparators.AlphabeticalComparison AlphabeticalComparison
 		 */
-		public function get caseSensitive(): Boolean { return _caseSensitive; }
+		public function get comparison(): AlphabeticalComparison { return _comparison; }
 
-		public function set caseSensitive(value:Boolean): void { _caseSensitive = value; }
-
-		/**
-		 * Defines whether lowercase comes before or after uppercase.
-		 */
-		public function get lowerCaseFirst(): Boolean { return _lowerCaseFirst; }
-
-		public function set lowerCaseFirst(value:Boolean): void { _lowerCaseFirst = value; }
+		public function set comparison(value:AlphabeticalComparison): void
+		{
+			if (value == null) throw new ArgumentError("The property 'comparison' must not be 'null'.");
+			_comparison = value;
+		}
 
 		/**
 		 * Constructor, creates a new <code>AlphabeticComparator</code> object.
 		 * 
-		 * @param 	caseSensitive	Indicates whether case is considered in the comparison.
-		 * @param 	lowerCaseFirst	Indicates whether lowercase comes before or after uppercase.
+		 * @param 	comparison		Indicates which type of comparison will be used.
+		 * @throws 	ArgumentError 	If the 'comparison' argument is <code>null</code>.
+		 * @see 	org.as3coreaddendum.system.comparators.AlphabeticalComparison AlphabeticalComparison
 		 */
-		public function AlphabeticComparator(caseSensitive:Boolean = true, lowerCaseFirst:Boolean = true)
+		public function AlphabeticalComparator(comparison:AlphabeticalComparison)
 		{
-			_caseSensitive = caseSensitive;
-			_lowerCaseFirst = lowerCaseFirst;
+			if (comparison == null) throw new ArgumentError("The property 'comparison' must not be 'null'.");
+			this.comparison = comparison;
 		}
 
 		/**
@@ -163,17 +155,17 @@ package org.as3coreaddendum.system.comparators
 		 * 
 		 * @param 	o1	The first <code>String</code> object to be compared.
 		 * @param 	o2	The second <code>String</code> object to be compared.
-		 * @throws 	org.as3coreaddendum.errors.ClassCastError 	if any of the arguments is <code>null</code>.
+		 * @throws 	ArgumentError 	if any of the arguments is <code>null</code>.
 		 * @return	A negative integer, zero, or a positive integer as the first argument is less than, equal to, or greater than the second.
 		 */
 		public function compare(o1:*, o2:*): int
 		{
-			if (o1 == null || o2 == null) throw new ClassCastError("Both arguments must not be 'null'.");
+			if (o1 == null || o2 == null) throw new ArgumentError("Both arguments must not be 'null'.");
 			
-			o1 = o1.toString();
-			o2 = o2.toString();
+			o1 = String(o1);
+			o2 = String(o2);
 			
-			if (!_caseSensitive)
+			if (_comparison == AlphabeticalComparison.CASE_INSENSITIVE)
 			{
 				o1 = (o1 as String).toLowerCase();
 				o2 = (o2 as String).toLowerCase();
@@ -209,7 +201,7 @@ package org.as3coreaddendum.system.comparators
 				}
 				else if (c1a != c2a)
 				{
-					if (_lowerCaseFirst)
+					if (_comparison == AlphabeticalComparison.LOWER_CASE_FIRST)
 					{
 						return (c1a == c1a.toUpperCase()) ? 1 : -1;
 					}
@@ -226,12 +218,20 @@ package org.as3coreaddendum.system.comparators
 			{
 				return -1;
 			}
-			else if ((o1 as String).length > (o2 as String).length)
+			else
 			{
 				return 1;
 			}
-			
-			return 0;
+		}
+		
+		/**
+		 * Returns the string representation of this object.
+		 * 
+		 * @return 	the string representation of the this object.
+		 */
+		public function toString():String
+		{
+			return "[AlphabeticComparator: comparison = " + comparison + "]";
 		}
 
 	}

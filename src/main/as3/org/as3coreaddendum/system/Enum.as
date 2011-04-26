@@ -27,11 +27,9 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-package org.as3coreaddendum.system
-{
+package org.as3coreaddendum.system {
 	import flash.errors.IllegalOperationError;
-	
-	import org.as3coreaddendum.errors.ClassCastError;
+	import flash.utils.getQualifiedClassName;
 
 	/**
 	 * This is the base class for implementation of enumeration objects.
@@ -140,8 +138,10 @@ package org.as3coreaddendum.system
 	 * Thus no more instances can be created.</p>
 	 * <p>Your Enumerated Type is safe to be used only with the set of values pre-defined by you.</p>
 	 * 
-	 * @see		org.as3coreaddendum.system.NumericRounding	NumericRounding
 	 * @see 	org.as3coreaddendum.errors.InvalidEnumArgumentError InvalidEnumArgumentError
+	 * @see 	org.as3coreaddendum.system.IComparable IComparable
+	 * @see 	org.as3coreaddendum.system.IEquatable IEquatable
+	 * @see 	org.as3coreaddendum.system.ISerializable ISerializable
 	 * @author 	Flávio Silva
 	 */
 	public class Enum implements IComparable, IEquatable, ISerializable
@@ -170,8 +170,8 @@ package org.as3coreaddendum.system
 		 */
 		public function Enum(name:String, ordinal:int)
 		{
+			if (getClassName(this) == "Enum")  throw new IllegalOperationError("This class shouldn't be instantiated directly, rather than enumeration classes must extend this class.");
 			if (name == null || name == "") throw new ArgumentError("The 'name' argument must not be 'null' nor an empty 'String'.");
-			if (Reflection.getClassName(this) == "Enum")  throw new IllegalOperationError("This class shouldn't be instantiated directly, rather than enumeration classes must extend this class.");
 			
 			_name = name;
 			_ordinal = ordinal;
@@ -182,16 +182,16 @@ package org.as3coreaddendum.system
 		 * <p>Enum constants are only comparable to other enum constants of the same enum type. The natural order implemented by this method is the order in which the constants are declared.</p>
 		 * 
 		 * @param 	o	The target object to be compared.
-		 * @throws	org.as3coreaddendum.errors.ClassCastError If the type of the instance <code>o</code> is other than this exactly enum type instance.
+		 * @throws	ArgumentError If the type of the argument <code>o</code> is other than this exactly enum type instance.
 		 * @return	a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified object.
 		 * @see		org.as3coreaddendum.system.IComparable	IComparable
 		 */
 		public function compareTo(o:*): int
 		{
-			var path:String = Reflection.getClassPath(this);
-			var comparePath:String = Reflection.getClassPath(o);
+			var path:String = getClassPath(this);
+			var comparePath:String = getClassPath(o);
 			
-			if (path != comparePath) throw new ClassCastError("The 'o' argument must be of type: " + path + ". Received: " + comparePath);
+			if (path != comparePath) throw new ArgumentError("The 'o' argument must be of type: " + path + ". Received: " + comparePath);
 			
 			var compare:Enum = Enum(o);
 			
@@ -216,8 +216,8 @@ package org.as3coreaddendum.system
 		 */
 		public function equals(other:*): Boolean
 		{
-			var path:String = Reflection.getClassPath(this);
-			var comparePath:String = Reflection.getClassPath(other);
+			var path:String = getClassPath(this);
+			var comparePath:String = getClassPath(other);
 			
 			if (path != comparePath) return false;
 			
@@ -233,7 +233,7 @@ package org.as3coreaddendum.system
  		 */
 		public function toSource(): String
 		{
-			return Reflection.getClassName(this) + "." + toString();
+			return getClassName(this) + "." + toString();
 		}
 
 		/**
@@ -256,6 +256,25 @@ package org.as3coreaddendum.system
 		public function valueOf(): int
 		{
 			return _ordinal;
+		}
+		
+		/**
+		 * @private
+		 */
+		private function getClassName(o:*): String
+		{
+			var path:String = getClassPath(o);
+			var a:Array = path.split(".");
+			return (a.length > 0) ? a.pop() : path;
+		}
+		
+		/**
+		 * @private
+		 */
+		private function getClassPath(o:*): String
+		{
+			var path:String = getQualifiedClassName(o);
+			return path.split("::").join(".");
 		}
 
 	}

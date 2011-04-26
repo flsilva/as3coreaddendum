@@ -27,9 +27,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-package org.as3coreaddendum.system.comparators
-{
-	import org.as3coreaddendum.errors.ClassCastError;
+package org.as3coreaddendum.system.comparators {
 	import org.as3coreaddendum.system.IComparator;
 	import org.as3coreaddendum.system.IIndexable;
 	import org.as3coreaddendum.system.IPriority;
@@ -60,13 +58,13 @@ package org.as3coreaddendum.system.comparators
 		 * 
 		 * @param 	o1	The first <code>Number</code> object to be compared.
 		 * @param 	o2	The second <code>Number</code> object to be compared.
-		 * @throws 	org.as3coreaddendum.errors.ClassCastError 	if any of the arguments does not implements the <code>IPriority</code> or <code>IIndexable</code> interfaces.
+		 * @throws 	ArgumentError 	if any of the arguments does not implements the <code>IPriority</code> or <code>IIndexable</code> interfaces.
 		 * @return 	A negative integer or a positive integer as the priority of the first argument is greater than or less than the second. If the priority of the arguments are equal, returns a negative integer, zero, or a positive integer as the index of the first argument is less than, equal to, or greater than the second.
 		 */
 		public function compare(o1:*, o2:*): int
 		{
-			if (!(o1 is IPriority) || !(o2 is IPriority)) throw new ClassCastError("Both arguments must implement the 'IPriority' interface.");
-			if (!(o1 is IIndexable) || !(o2 is IIndexable)) throw new ClassCastError("Both arguments must implement the 'IIndexable' interface.");
+			if (!(o1 is IPriority) || !(o2 is IPriority)) throw new ArgumentError("Both arguments must implement the 'IPriority' interface.");
+			if (!(o1 is IIndexable) || !(o2 is IIndexable)) throw new ArgumentError("Both arguments must implement the 'IIndexable' interface.");
 			
 			var p1:int = (o1 as IPriority).priority;
 			var p2:int = (o2 as IPriority).priority;

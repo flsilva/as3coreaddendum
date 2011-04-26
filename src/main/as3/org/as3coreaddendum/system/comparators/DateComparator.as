@@ -27,9 +27,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-package org.as3coreaddendum.system.comparators
-{
-	import org.as3coreaddendum.errors.ClassCastError;
+package org.as3coreaddendum.system.comparators {
 	import org.as3coreaddendum.system.IComparator;
 
 	/**
@@ -76,15 +74,18 @@ package org.as3coreaddendum.system.comparators
 		 * 
 		 * @param 	o1	The first <code>Date</code> object to be compared.
 		 * @param 	o2	The second <code>Date</code> object to be compared.
-		 * @throws 	org.as3coreaddendum.errors.ClassCastError 	if any of the arguments is not of type <code>Date</code>.
+		 * @throws 	ArgumentError 	if any of the arguments is not of type <code>Date</code>.
 		 * @return	A negative integer, zero, or a positive integer as the first argument is less than, equal to, or greater than the second.
 		 */
 		public function compare(o1:*, o2:*): int
 		{
-			if (!(o1 is Date) || !(o2 is Date)) throw new ClassCastError("Both arguments must be of type 'Date'.");
+			if (!(o1 is Date) || !(o2 is Date)) throw new ArgumentError("Both arguments must be of type 'Date'.");
 			
-			var n1:Number = o1.valueOf();
-			var n2:Number = o2.valueOf();
+			var d1:Date = o1;
+			var d2:Date = o2;
+			
+			var n1:Number = d1.valueOf();
+			var n2:Number = d2.valueOf();
 			
 			return _numberComparator.compare(n1, n2);
 		}

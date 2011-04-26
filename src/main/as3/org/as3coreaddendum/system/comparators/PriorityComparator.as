@@ -27,9 +27,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-package org.as3coreaddendum.system.comparators
-{
-	import org.as3coreaddendum.errors.ClassCastError;
+package org.as3coreaddendum.system.comparators {
 	import org.as3coreaddendum.system.IComparator;
 	import org.as3coreaddendum.system.IPriority;
 
@@ -55,12 +53,12 @@ package org.as3coreaddendum.system.comparators
 		 * 
 		 * @param 	o1	The first <code>Number</code> object to be compared.
 		 * @param 	o2	The second <code>Number</code> object to be compared.
-		 * @throws 	org.as3coreaddendum.errors.ClassCastError 	if any of the arguments does not implements the <code>IPriority</code> interface.
+		 * @throws 	ArgumentError 	if any of the arguments does not implements the <code>IPriority</code> interface.
 		 * @return 	A negative integer, zero, or a positive integer as the priority of the first argument is greater than, equal to, or less than the second.
 		 */
 		public function compare(o1:*, o2:*): int
 		{
-			if (!(o1 is IPriority) || !(o2 is IPriority)) throw new ClassCastError("Both arguments must implements the 'IPriority' interface.");
+			if (!(o1 is IPriority) || !(o2 is IPriority)) throw new ArgumentError("Both arguments must implements the 'IPriority' interface.");
 			
 			var p1:int = (o1 as IPriority).priority;
 			var p2:int = (o2 as IPriority).priority;

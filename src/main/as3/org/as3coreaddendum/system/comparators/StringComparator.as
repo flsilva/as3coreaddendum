@@ -29,6 +29,7 @@
 
 package org.as3coreaddendum.system.comparators {
 	import org.as3coreaddendum.system.IComparator;
+	import org.as3coreaddendum.system.StringCase;
 
 	/**
 	 * A comparator for <code>String</code> objects.
@@ -59,23 +60,23 @@ package org.as3coreaddendum.system.comparators {
 	 */
 	public class StringComparator implements IComparator
 	{
-		private var _caseSensitive: Boolean;
+		private var _stringCase: StringCase;
 
 		/**
 		 * Defines whether case is considered in the comparison.
 		 */
-		public function get caseSensitive(): Boolean { return _caseSensitive; }
+		public function get stringCase(): StringCase { return _stringCase; }
 
-		public function set caseSensitive(value:Boolean): void { _caseSensitive = value; }
+		public function set stringCase(value:StringCase): void { _stringCase = value; }
 
 		/**
 		 * Constructor, creates a new <code>StringComparator</code> object.
 		 * 
 		 * @param 	caseSensitive 	Indicates whether case is considered in the comparison.
 		 */
-		public function StringComparator(caseSensitive:Boolean = true)
+		public function StringComparator(stringCase:StringCase)
 		{
-			_caseSensitive = caseSensitive;
+			this.stringCase = stringCase;
 		}
 
 		/**
@@ -83,14 +84,17 @@ package org.as3coreaddendum.system.comparators {
 		 * 
 		 * @param 	o1 	The first <code>String</code> object to be compared.
 		 * @param 	o2 	The second <code>String</code> object to be compared.
+		 * @throws 	ArgumentError 	if any of the arguments is <code>null</code>.
 		 * @return 	A negative integer, zero, or a positive integer as the first argument is less than, equal to, or greater than the second.
 		 */
 		public function compare(o1:*, o2:*): int
 		{
-			o1 = o1.toString();
-			o2 = o2.toString();
+			if (o1 == null || o2 == null) throw new ArgumentError("Both arguments must not be 'null'.");
 			
-			if (!_caseSensitive)
+			o1 = String(o1);
+			o2 = String(o2);
+			
+			if (_stringCase == StringCase.INSENSITIVE)
 			{
 				o1 = (o1 as String).toLowerCase();
 				o2 = (o2 as String).toLowerCase();
@@ -116,15 +120,21 @@ package org.as3coreaddendum.system.comparators {
 				{
 					return 1;
 				}
-				else if (lc > 0)
+				else
 				{
 					return -1;
 				}
-				else
-				{
-					return 0;
-				}
 			}
+		}
+		
+		/**
+		 * Returns the string representation of this object.
+		 * 
+		 * @return 	the string representation of the this object.
+		 */
+		public function toString():String
+		{
+			return "[StringComparator: stringCase = " + stringCase + "]";
 		}
 
 	}

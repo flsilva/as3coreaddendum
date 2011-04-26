@@ -33,12 +33,14 @@
 	<component id="org.as3coreaddendum.system:ISortable" 						class="org.as3coreaddendum.system.ISortable" />
 	<component id="org.as3coreaddendum.system:ITypeable" 						class="org.as3coreaddendum.system.ITypeable" />
 	<component id="org.as3coreaddendum.system:NumericRounding" 					class="org.as3coreaddendum.system.NumericRounding" />
-	<component id="org.as3coreaddendum.system:Reflection" 						class="org.as3coreaddendum.system.Reflection" />
+	<component id="org.as3coreaddendum.system:StringCase" 						class="org.as3coreaddendum.system.StringCase" />
 
 	<!-- org.as3coreaddendum.system.comparators -->
 
-	<component id="org.as3coreaddendum.system.comparators:AlphabeticComparator" 		class="org.as3coreaddendum.system.comparators.AlphabeticComparator" />
+	<component id="org.as3coreaddendum.system.comparators:AlphabeticalComparator" 		class="org.as3coreaddendum.system.comparators.AlphabeticalComparator" />
+	<component id="org.as3coreaddendum.system.comparators:AlphabeticalComparison" 		class="org.as3coreaddendum.system.comparators.AlphabeticalComparison" />
 	<component id="org.as3coreaddendum.system.comparators:BooleanComparator" 			class="org.as3coreaddendum.system.comparators.BooleanComparator" />
+	<component id="org.as3coreaddendum.system.comparators:BooleanComparison" 			class="org.as3coreaddendum.system.comparators.BooleanComparison" />
 	<component id="org.as3coreaddendum.system.comparators:DateComparator" 				class="org.as3coreaddendum.system.comparators.DateComparator" />
 	<component id="org.as3coreaddendum.system.comparators:IndexablePriorityComparator" 	class="org.as3coreaddendum.system.comparators.IndexablePriorityComparator" />
 	<component id="org.as3coreaddendum.system.comparators:NumberComparator" 			class="org.as3coreaddendum.system.comparators.NumberComparator" />

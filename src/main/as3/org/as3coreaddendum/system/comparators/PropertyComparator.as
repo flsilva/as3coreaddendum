@@ -27,9 +27,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-package org.as3coreaddendum.system.comparators
-{
-	import org.as3coreaddendum.errors.ClassCastError;
+package org.as3coreaddendum.system.comparators {
 	import org.as3coreaddendum.system.IComparator;
 
 	/**
@@ -118,14 +116,24 @@ package org.as3coreaddendum.system.comparators
 		 * 
 		 * @param 	o1 	The first object which has the property recovered to be compared. Can be an instance of any custom class.
 		 * @param 	o2 	The second object which has the property recovered to be compared. Can be an instance of any custom class.
-		 * @throws 	org.as3coreaddendum.errors.ClassCastError if any argument is <code>null</code>.
+		 * @throws 	ArgumentError if any argument is <code>null</code>.
 		 * @return 	A negative integer, zero, or a positive integer as the first property is less than, equal to, or greater than the second.
 		 */
 		public function compare(o1:*, o2:*): int
 		{
-			if (o1 == null || o2 == null) throw new ClassCastError("Both arguments must not be 'null'.");
+			if (o1 == null || o2 == null) throw new ArgumentError("Both arguments must not be 'null'.");
 			
 			return _comparator.compare(o1[_property], o2[_property]);
+		}
+		
+		/**
+		 * Returns the string representation of this object.
+		 * 
+		 * @return 	the string representation of the this object.
+		 */
+		public function toString():String
+		{
+			return "[PropertyComparator: property = " + property + "]";
 		}
 
 	}
