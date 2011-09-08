@@ -45,7 +45,7 @@ package org.as3coreaddendum.system
 		/**
 		 * Defines if the object is initialized or not.
 		 */
-		function get initialized(): Boolean;
+		function get isInitialized(): Boolean;
 	}
 
 }

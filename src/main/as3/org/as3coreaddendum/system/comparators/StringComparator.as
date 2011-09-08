@@ -67,12 +67,16 @@ package org.as3coreaddendum.system.comparators {
 		 */
 		public function get stringCase(): StringCase { return _stringCase; }
 
-		public function set stringCase(value:StringCase): void { _stringCase = value; }
+		public function set stringCase(value:StringCase): void
+		{
+			if (value == null) throw new ArgumentError("The property 'stringCase' must not be 'null'.");
+			_stringCase = value;
+		}
 
 		/**
 		 * Constructor, creates a new <code>StringComparator</code> object.
 		 * 
-		 * @param 	caseSensitive 	Indicates whether case is considered in the comparison.
+		 * @param 	stringCase 	Indicates whether case sensitivity is considered or not in the comparison.
 		 */
 		public function StringComparator(stringCase:StringCase)
 		{
