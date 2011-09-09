@@ -27,8 +27,11 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-package {
+package 
+{
 	import org.as3coreaddendum.errors.ErrorsTests;
+	import org.as3coreaddendum.events.IndexEventTests;
+	import org.as3coreaddendum.events.PriorityEventTests;
 	import org.as3coreaddendum.system.EnumTests;
 	import org.as3coreaddendum.system.ICloneableTests;
 	import org.as3coreaddendum.system.NumericRoundingTests;
@@ -51,6 +54,10 @@ package {
 		
 		//org.as3coreaddendum.errors
 		public var errors_t1:ErrorsTests;
+		
+		//org.as3coreaddendum.events
+		public var indexEventTests:IndexEventTests;
+		public var priorityEventTests:PriorityEventTests;
 		
 		//org.as3coreaddendum.system
 		public var system_t1:EnumTests;

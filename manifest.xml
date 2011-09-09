@@ -18,6 +18,11 @@
 	<component id="org.as3coreaddendum.errors:ObjectDisposedError" 				class="org.as3coreaddendum.errors.ObjectDisposedError" />
 	<component id="org.as3coreaddendum.errors:UnsupportedOperationError"		class="org.as3coreaddendum.errors.UnsupportedOperationError" />
 	
+	<!-- org.as3coreaddendum.events -->
+
+	<component id="org.as3coreaddendum.events:IndexEvent" 						class="org.as3coreaddendum.events.IndexEvent" />
+	<component id="org.as3coreaddendum.events:PriorityEvent" 					class="org.as3coreaddendum.events.PriorityEvent" />
+	
 	<!-- org.as3coreaddendum.system -->
 
 	<component id="org.as3coreaddendum.system:Enum" 							class="org.as3coreaddendum.system.Enum" />

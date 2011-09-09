@@ -32,6 +32,7 @@ package org.as3coreaddendum.system
 	/**
 	 * This interface defines a contract for objects that contains an index.
 	 * <p>It can be used, for example, by objects that can be found or sorted by its index.</p>
+	 * <p>If the object also implements <code>flash.events.IEventDispatcher</code> interface, it is highly recommended that the object dispatches <code>org.as3coreaddendum.events.IndexEvent</code> when its <code>index</code> setter is invoked.</p>
 	 * 
 	 * @author Flávio Silva
 	 */
