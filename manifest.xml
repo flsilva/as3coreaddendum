@@ -47,9 +47,10 @@
 	<component id="org.as3coreaddendum.system.comparators:BooleanComparator" 			class="org.as3coreaddendum.system.comparators.BooleanComparator" />
 	<component id="org.as3coreaddendum.system.comparators:BooleanComparison" 			class="org.as3coreaddendum.system.comparators.BooleanComparison" />
 	<component id="org.as3coreaddendum.system.comparators:DateComparator" 				class="org.as3coreaddendum.system.comparators.DateComparator" />
-	<component id="org.as3coreaddendum.system.comparators:IndexablePriorityComparator" 	class="org.as3coreaddendum.system.comparators.IndexablePriorityComparator" />
+	<component id="org.as3coreaddendum.system.comparators:IndexComparator" 				class="org.as3coreaddendum.system.comparators.IndexComparator" />
 	<component id="org.as3coreaddendum.system.comparators:NumberComparator" 			class="org.as3coreaddendum.system.comparators.NumberComparator" />
 	<component id="org.as3coreaddendum.system.comparators:PriorityComparator" 			class="org.as3coreaddendum.system.comparators.PriorityComparator" />
+	<component id="org.as3coreaddendum.system.comparators:PriorityIndexComparator" 		class="org.as3coreaddendum.system.comparators.PriorityIndexComparator" />
 	<component id="org.as3coreaddendum.system.comparators:PropertyComparator" 			class="org.as3coreaddendum.system.comparators.PropertyComparator" />
 	<component id="org.as3coreaddendum.system.comparators:StringComparator" 			class="org.as3coreaddendum.system.comparators.StringComparator" />
 

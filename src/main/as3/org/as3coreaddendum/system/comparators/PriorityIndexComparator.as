@@ -41,14 +41,14 @@ package org.as3coreaddendum.system.comparators {
 	 * @see org.as3coreaddendum.system.IPriority IPriority
 	 * @author Flávio Silva
 	 */
-	public class IndexablePriorityComparator implements IComparator
+	public class PriorityIndexComparator implements IComparator
 	{
 		private var _numberComparator: NumberComparator;
 
 		/**
-		 * Constructor, creates a new <code>IndexablePriorityComparator</code> object.
+		 * Constructor, creates a new <code>PriorityIndexComparator</code> object.
 		 */
-		public function IndexablePriorityComparator()
+		public function PriorityIndexComparator()
 		{
 			_numberComparator = new NumberComparator();
 		}

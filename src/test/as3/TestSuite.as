@@ -38,9 +38,10 @@ package
 	import org.as3coreaddendum.system.comparators.AlphabeticalComparatorTests;
 	import org.as3coreaddendum.system.comparators.BooleanComparatorTests;
 	import org.as3coreaddendum.system.comparators.DateComparatorTests;
-	import org.as3coreaddendum.system.comparators.IndexablePriorityComparatorTests;
+	import org.as3coreaddendum.system.comparators.IndexComparatorTests;
 	import org.as3coreaddendum.system.comparators.NumberComparatorTests;
 	import org.as3coreaddendum.system.comparators.PriorityComparatorTests;
+	import org.as3coreaddendum.system.comparators.PriorityIndexComparatorTests;
 	import org.as3coreaddendum.system.comparators.PropertyComparatorTests;
 	import org.as3coreaddendum.system.comparators.StringComparatorTests;
 
@@ -53,26 +54,27 @@ package
 	{
 		
 		//org.as3coreaddendum.errors
-		public var errors_t1:ErrorsTests;
+		public var errorsTests:ErrorsTests;
 		
 		//org.as3coreaddendum.events
 		public var indexEventTests:IndexEventTests;
 		public var priorityEventTests:PriorityEventTests;
 		
 		//org.as3coreaddendum.system
-		public var system_t1:EnumTests;
-		public var system_t2:ICloneableTests;
-		public var system_t3:NumericRoundingTests;
+		public var enumTests:EnumTests;
+		public var iCloneableTests:ICloneableTests;
+		public var numericRoundingTests:NumericRoundingTests;
 		
 		//org.as3coreaddendum.system.comparators
-		public var comparators_t1:AlphabeticalComparatorTests;
-		public var comparators_t2:BooleanComparatorTests;
-		public var comparators_t3:DateComparatorTests;
-		public var comparators_t4:IndexablePriorityComparatorTests;
-		public var comparators_t5:NumberComparatorTests;
-		public var comparators_t6:PriorityComparatorTests;
-		public var comparators_t7:PropertyComparatorTests;
-		public var comparators_t8:StringComparatorTests;
+		public var alphabeticalComparatorTests:AlphabeticalComparatorTests;
+		public var booleanComparatorTests:BooleanComparatorTests;
+		public var dateComparatorTests:DateComparatorTests;
+		public var indexComparatorTests:IndexComparatorTests;
+		public var numberComparatorTests:NumberComparatorTests;
+		public var priorityComparatorTests:PriorityComparatorTests;
+		public var priorityIndexComparatorTests:PriorityIndexComparatorTests;
+		public var propertyComparatorTests:PropertyComparatorTests;
+		public var stringComparatorTests:StringComparatorTests;
 
 		public function TestSuite()
 		{

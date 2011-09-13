@@ -27,16 +27,17 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-package org.as3coreaddendum.system.comparators {
+package org.as3coreaddendum.system.comparators 
+{
 	import org.flexunit.Assert;
 
 	/**
 	 * @author Flávio Silva
 	 */
-	public class IndexablePriorityComparatorTests
+	public class PriorityIndexComparatorTests
 	{
 		
-		public function IndexablePriorityComparatorTests()
+		public function PriorityIndexComparatorTests()
 		{
 			
 		}
@@ -48,25 +49,25 @@ package org.as3coreaddendum.system.comparators {
 		[Test(expects="ArgumentError")]
 		public function compare_invalidArgumentTest1_ThrowsError(): void
 		{
-			var comparator:IndexablePriorityComparator = new IndexablePriorityComparator();
-			var t1:TestIndexablePriority = new TestIndexablePriority("t1", 1, 1);
+			var comparator:PriorityIndexComparator = new PriorityIndexComparator();
+			var t1:TestIndexablePriorityObject = new TestIndexablePriorityObject("t1", 1, 1);
 			comparator.compare(t1, {});
 		}
 		
 		[Test(expects="ArgumentError")]
 		public function compare_invalidArgumentTest2_ThrowsError(): void
 		{
-			var comparator:IndexablePriorityComparator = new IndexablePriorityComparator();
-			var t1:TestIndexablePriority = new TestIndexablePriority("t1", 1, 1);
+			var comparator:PriorityIndexComparator = new PriorityIndexComparator();
+			var t1:TestIndexablePriorityObject = new TestIndexablePriorityObject("t1", 1, 1);
 			comparator.compare({}, t1);
 		}
 		
 		[Test]
 		public function compare_indexablePriorityComparison1_ReturnsInteger(): void
 		{
-			var comparator:IndexablePriorityComparator = new IndexablePriorityComparator();
-			var t1:TestIndexablePriority = new TestIndexablePriority("t1", 1, 1);
-			var t2:TestIndexablePriority = new TestIndexablePriority("t2", 1, 1);
+			var comparator:PriorityIndexComparator = new PriorityIndexComparator();
+			var t1:TestIndexablePriorityObject = new TestIndexablePriorityObject("t1", 1, 1);
+			var t2:TestIndexablePriorityObject = new TestIndexablePriorityObject("t2", 1, 1);
 			var result:int = comparator.compare(t1, t2);
 			Assert.assertEquals(0, result);
 		}
@@ -74,9 +75,9 @@ package org.as3coreaddendum.system.comparators {
 		[Test]
 		public function compare_indexablePriorityComparison2_ReturnsInteger(): void
 		{
-			var comparator:IndexablePriorityComparator = new IndexablePriorityComparator();
-			var t1:TestIndexablePriority = new TestIndexablePriority("t1", 1, 1);
-			var t2:TestIndexablePriority = new TestIndexablePriority("t2", 2, 1);
+			var comparator:PriorityIndexComparator = new PriorityIndexComparator();
+			var t1:TestIndexablePriorityObject = new TestIndexablePriorityObject("t1", 1, 1);
+			var t2:TestIndexablePriorityObject = new TestIndexablePriorityObject("t2", 2, 1);
 			var result:int = comparator.compare(t1, t2);
 			Assert.assertEquals(1, result);
 		}
@@ -84,9 +85,9 @@ package org.as3coreaddendum.system.comparators {
 		[Test]
 		public function compare_indexablePriorityComparison3_ReturnsInteger(): void
 		{
-			var comparator:IndexablePriorityComparator = new IndexablePriorityComparator();
-			var t1:TestIndexablePriority = new TestIndexablePriority("t1", 2, 1);
-			var t2:TestIndexablePriority = new TestIndexablePriority("t2", 1, 1);
+			var comparator:PriorityIndexComparator = new PriorityIndexComparator();
+			var t1:TestIndexablePriorityObject = new TestIndexablePriorityObject("t1", 2, 1);
+			var t2:TestIndexablePriorityObject = new TestIndexablePriorityObject("t2", 1, 1);
 			var result:int = comparator.compare(t1, t2);
 			Assert.assertEquals(-1, result);
 		}
@@ -94,9 +95,9 @@ package org.as3coreaddendum.system.comparators {
 		[Test]
 		public function compare_indexablePriorityComparison4_ReturnsInteger(): void
 		{
-			var comparator:IndexablePriorityComparator = new IndexablePriorityComparator();
-			var t1:TestIndexablePriority = new TestIndexablePriority("t1", 1, 1);
-			var t2:TestIndexablePriority = new TestIndexablePriority("t2", 1, 2);
+			var comparator:PriorityIndexComparator = new PriorityIndexComparator();
+			var t1:TestIndexablePriorityObject = new TestIndexablePriorityObject("t1", 1, 1);
+			var t2:TestIndexablePriorityObject = new TestIndexablePriorityObject("t2", 1, 2);
 			var result:int = comparator.compare(t1, t2);
 			Assert.assertEquals(-1, result);
 		}
@@ -107,7 +108,7 @@ package org.as3coreaddendum.system.comparators {
 import org.as3coreaddendum.system.IIndexable;
 import org.as3coreaddendum.system.IPriority;
 
-class TestIndexablePriority implements IIndexable, IPriority
+class TestIndexablePriorityObject implements IIndexable, IPriority
 {
 	private var _index:int;
 	private var _name:String;
@@ -121,7 +122,7 @@ class TestIndexablePriority implements IIndexable, IPriority
 	
 	public function set index(value:int): void { _index = value; }
 	
-	public function TestIndexablePriority(name:String, priority:int, index:int)
+	public function TestIndexablePriorityObject(name:String, priority:int, index:int)
 	{
 		_name = name;
 		_priority = priority;
