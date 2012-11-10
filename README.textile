@@ -2,4 +2,4 @@ h2. AS3CoreAddendum
 
 AS3CoreAddendum is an architectural addendum to the core of the Actionscript 3.0 language.
 It's based on some basic standards and patterns of languages like Java and C#.
-It aims to be a base standard library for basically any Flash/Flex/AIR AS3 application or framework.
+It aims to be a base standard library for basically any AS3 application or framework.

@@ -11,9 +11,14 @@ target/
 .as3_classpath
 .project
 
+# Linux
+.*
+!.gitignore
+*~
+
 # due to the fact that FDT doesn't support Maven (yet, I hope)
 # I've put swc dependencies (flexunit4) in this folder ("dependencies")
 # but they are only needed to better coding on FDT
 # they aren't needed or used in the Maven build process
-# so they're not included in the repository
+# so they aren't included in the repository
 dependencies/
