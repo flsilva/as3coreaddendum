@@ -11,8 +11,8 @@ Basic commands working:
 
 mvn clean
 mvn compile
-mvn test*
-mvn install*
+mvn test
+mvn install
 
-==*== to run unit tests standalone flashplayer must be launched. if you don't have flashplayer in your PATH you can use the following variable to point to your standalone flashplayer (debug version):
+To run unit tests standalone flashplayer must be launched. If you don't have flashplayer in your PATH you can use the following variable to point to your standalone flashplayer (debug version):
 -Dflex.flashPlayer.command=ABSOLUTE_PATH_HERE
