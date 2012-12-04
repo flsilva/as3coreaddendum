@@ -4,6 +4,8 @@ AS3CoreAddendum is an architectural addendum to the core of the Actionscript 3.0
 It's based on some basic standards and patterns of languages like Java and C#.
 It aims to be a base standard library for basically any AS3 application or framework.
 
+For more information visit <a href="http://as3coreaddendum.org" target="_blank">as3coreaddendum.org</a>.
+
 h3. Build
 
 The build is done using Apache Maven 3.
